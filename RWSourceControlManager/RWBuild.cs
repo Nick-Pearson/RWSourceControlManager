@@ -146,7 +146,7 @@ namespace RWSourceControlManager
             //SerzProc.StartInfo.RedirectStandardOutput = true;
             
             SerzProc.Start();
-            SerzProc.WaitForExit();// Waits here for the process to exit.c
+            SerzProc.WaitForExit();// Waits here for the process to exit
 
             //string Output = SerzProc.StandardOutput.ReadToEnd();
             //System.Console.WriteLine("Done: {0}", Output);
