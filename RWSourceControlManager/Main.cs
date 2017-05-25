@@ -10,10 +10,24 @@ namespace RWSourceControlManager
         {
             InitializeComponent();
 
+            //check for config
+            if(!Config.CanLoad())
+            {
+                ConfigSetter BootstrapConfigScreen = new ConfigSetter();
+                BootstrapConfigScreen.Show();
+            }
+
+            RefreshProjects();
+        }
+
+        public void RefreshProjects()
+        {
+            searchableListView1.Clear();
+
             List<ProjectManifest> InitialProjects = new List<ProjectManifest>();
             ProgramStatics.GetAllProjects(ref InitialProjects);
 
-            foreach(ProjectManifest Manifest in InitialProjects)
+            foreach (ProjectManifest Manifest in InitialProjects)
             {
                 AddProject(Manifest);
             }
@@ -88,6 +102,17 @@ namespace RWSourceControlManager
                     RWBuild.BuildFromSource(SelectedProject.ProjectID, Mapping);
             }
 
+        }
+
+        private void editConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigSetter ConfigSetter = new ConfigSetter();
+            ConfigSetter.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

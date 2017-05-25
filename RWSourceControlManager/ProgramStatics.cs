@@ -22,12 +22,22 @@ namespace RWSourceControlManager
 
         public static string GetRailworksPath()
         {
-            return Config.Get().RailworksPath;
+            string path = Config.Get().RailworksPath;
+
+            if (!path.EndsWith(@"\"))
+                return path + @"\";
+
+            return path;
         }
 
         public static string GetSourceControlPath()
         {
-            return Config.Get().RWSourceControlPath;
+            string path = Config.Get().RWSourceControlPath;
+
+            if (!path.EndsWith(@"\"))
+                return path + @"\";
+
+            return path;
         }
 
         public static string GetPath(string ProjectID)

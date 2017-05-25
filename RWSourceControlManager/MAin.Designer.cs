@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.searchableListView1 = new RWSourceControlManager.SearchableListView();
             this.RouteSearchPanel = new System.Windows.Forms.Panel();
-            this.searchControl1 = new RWSourceControlManager.SearchControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MainDetailsTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.grpQuickActions = new System.Windows.Forms.GroupBox();
             this.btnBuildAssets = new System.Windows.Forms.Button();
             this.btnLinkFolders = new System.Windows.Forms.Button();
-            this.newFolderPicker = new RWSourceControlManager.MultiFolderPicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCurrentFoldersPrompt = new System.Windows.Forms.Label();
             this.FoldersTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFromSourceControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchableListView1 = new RWSourceControlManager.SearchableListView();
+            this.searchControl1 = new RWSourceControlManager.SearchControl();
+            this.newFolderPicker = new RWSourceControlManager.MultiFolderPicker();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,15 +79,6 @@
             this.splitContainer1.SplitterDistance = 229;
             this.splitContainer1.TabIndex = 0;
             // 
-            // searchableListView1
-            // 
-            this.searchableListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchableListView1.Location = new System.Drawing.Point(0, 23);
-            this.searchableListView1.Name = "searchableListView1";
-            this.searchableListView1.Size = new System.Drawing.Size(229, 371);
-            this.searchableListView1.TabIndex = 1;
-            this.searchableListView1.SelectionChanged += new RWSourceControlManager.SelectedItemChanged(this.searchableListView1_SelectionChanged);
-            // 
             // RouteSearchPanel
             // 
             this.RouteSearchPanel.Controls.Add(this.searchControl1);
@@ -96,22 +88,10 @@
             this.RouteSearchPanel.Size = new System.Drawing.Size(229, 23);
             this.RouteSearchPanel.TabIndex = 0;
             // 
-            // searchControl1
-            // 
-            this.searchControl1.BackColor = System.Drawing.SystemColors.Menu;
-            this.searchControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.searchControl1.HistorySize = 0;
-            this.searchControl1.Location = new System.Drawing.Point(0, 0);
-            this.searchControl1.Name = "searchControl1";
-            this.searchControl1.Padding = new System.Windows.Forms.Padding(1);
-            this.searchControl1.SearchPropmt = "Search..";
-            this.searchControl1.Size = new System.Drawing.Size(229, 21);
-            this.searchControl1.TabIndex = 0;
-            this.searchControl1.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.lblVersion);
             this.panel1.Controls.Add(this.MainDetailsTableLayout);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -187,18 +167,6 @@
             this.btnLinkFolders.Text = "Link All Folders";
             this.btnLinkFolders.UseVisualStyleBackColor = true;
             // 
-            // newFolderPicker
-            // 
-            this.newFolderPicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.newFolderPicker.AutoSize = true;
-            this.newFolderPicker.Enabled = false;
-            this.newFolderPicker.Label = "Add a New Project Folder:";
-            this.newFolderPicker.Location = new System.Drawing.Point(3, 93);
-            this.newFolderPicker.Name = "newFolderPicker";
-            this.newFolderPicker.Size = new System.Drawing.Size(514, 77);
-            this.newFolderPicker.TabIndex = 1;
-            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -209,6 +177,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(514, 102);
             this.panel2.TabIndex = 3;
+            this.panel2.Visible = false;
             // 
             // lblCurrentFoldersPrompt
             // 
@@ -249,8 +218,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
-            this.importFromSourceControlToolStripMenuItem,
             this.toolStripSeparator1,
+            this.editConfigToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -259,26 +228,73 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.newToolStripMenuItem.Text = "Import from Disk";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // importFromSourceControlToolStripMenuItem
-            // 
-            this.importFromSourceControlToolStripMenuItem.Name = "importFromSourceControlToolStripMenuItem";
-            this.importFromSourceControlToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.importFromSourceControlToolStripMenuItem.Text = "Import from Source Control";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // editConfigToolStripMenuItem
+            // 
+            this.editConfigToolStripMenuItem.Name = "editConfigToolStripMenuItem";
+            this.editConfigToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.editConfigToolStripMenuItem.Text = "Edit Config";
+            this.editConfigToolStripMenuItem.Click += new System.EventHandler(this.editConfigToolStripMenuItem_Click);
+            // 
+            // searchableListView1
+            // 
+            this.searchableListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchableListView1.Location = new System.Drawing.Point(0, 23);
+            this.searchableListView1.Name = "searchableListView1";
+            this.searchableListView1.Size = new System.Drawing.Size(229, 371);
+            this.searchableListView1.TabIndex = 1;
+            this.searchableListView1.SelectionChanged += new RWSourceControlManager.SelectedItemChanged(this.searchableListView1_SelectionChanged);
+            // 
+            // searchControl1
+            // 
+            this.searchControl1.BackColor = System.Drawing.SystemColors.Menu;
+            this.searchControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchControl1.HistorySize = 0;
+            this.searchControl1.Location = new System.Drawing.Point(0, 0);
+            this.searchControl1.Name = "searchControl1";
+            this.searchControl1.Padding = new System.Windows.Forms.Padding(1);
+            this.searchControl1.SearchPropmt = "Search..";
+            this.searchControl1.Size = new System.Drawing.Size(229, 21);
+            this.searchControl1.TabIndex = 0;
+            this.searchControl1.TabStop = false;
+            // 
+            // newFolderPicker
+            // 
+            this.newFolderPicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.newFolderPicker.AutoSize = true;
+            this.newFolderPicker.Enabled = false;
+            this.newFolderPicker.Label = "Add a New Project Folder:";
+            this.newFolderPicker.Location = new System.Drawing.Point(3, 93);
+            this.newFolderPicker.Name = "newFolderPicker";
+            this.newFolderPicker.Size = new System.Drawing.Size(514, 77);
+            this.newFolderPicker.TabIndex = 1;
+            this.newFolderPicker.Visible = false;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(489, 7);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(40, 13);
+            this.lblVersion.TabIndex = 4;
+            this.lblVersion.Text = "v 1.0.0";
             // 
             // Main
             // 
@@ -317,7 +333,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private SearchableListView searchableListView1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importFromSourceControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
@@ -330,6 +345,8 @@
         private System.Windows.Forms.Label lblCurrentFoldersPrompt;
         private System.Windows.Forms.TableLayoutPanel FoldersTableLayout;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolStripMenuItem editConfigToolStripMenuItem;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

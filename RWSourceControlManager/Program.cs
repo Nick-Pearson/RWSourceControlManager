@@ -5,6 +5,8 @@ namespace RWSourceControlManager
 {
     static class Program
     {
+        public static Main m_Main;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -13,9 +15,17 @@ namespace RWSourceControlManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(GetMain());
+        }
 
-            Config.Get().Save();
+        public static Main GetMain()
+        {
+            if(m_Main == null)
+            {
+                m_Main = new Main();
+            }
+
+            return m_Main;
         }
     }
 }

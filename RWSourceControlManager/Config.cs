@@ -28,7 +28,7 @@ namespace RWSourceControlManager
 
         private static string m_ConfigFilepath = Application.UserAppDataPath + @"\config.xml";
 
-        private bool CanLoad()
+        public static bool CanLoad()
         {
             return File.Exists(m_ConfigFilepath);
         }
@@ -36,7 +36,7 @@ namespace RWSourceControlManager
         public bool Load()
         {
             Type SelfType = GetType();
-            if (!CanLoad())
+            if (!Config.CanLoad())
                 return false;
 
             XmlReader reader = XmlReader.Create(m_ConfigFilepath);

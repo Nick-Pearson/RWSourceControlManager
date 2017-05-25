@@ -54,6 +54,7 @@ namespace RWSourceControlManager
 
             m_Items.Add(new ListItem_Internal(NewItem));
             m_Dirty = true;
+            Invalidate();
         }
 
         public void AddUniqueItem(IListItemInterface NewItem)
@@ -73,14 +74,30 @@ namespace RWSourceControlManager
                 return;
             }
 
+            HideItem(m_Items[ItemIndex]);
             m_Items.RemoveAt(ItemIndex);
             m_Dirty = true;
+        }
+
+        public void Clear()
+        {
+            SetSelected(null);
+
+            foreach (ListItem_Internal Item in m_Items)
+            {
+                HideItem(Item);
+            }
+
+            m_Items.Clear();
+            m_Dirty = true;
+            Invalidate();
         }
 
         public void SetFilters(ref List<string> NewFilters)
         {
             m_SearchFilters = NewFilters;
             m_Dirty = true;
+            Invalidate();
         }
 
         public void SetSelected(ListControlBase Item)
@@ -251,7 +268,7 @@ namespace RWSourceControlManager
                 Item.ControlRepresentation == null)
                 return;
 
-            tableLayoutPanel1.Controls.Remove(Item.ControlRepresentation.Parent.Parent);
+            tableLayoutPanel1.Controls.Remove(Item.ControlRepresentation.Parent);
             Item.ControlRepresentation = null;
         }
 
