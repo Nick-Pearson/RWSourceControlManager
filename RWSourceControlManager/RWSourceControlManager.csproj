@@ -72,6 +72,7 @@
       <DependentUpon>ConfigSetter.cs</DependentUpon>
     </Compile>
     <Compile Include="FileHelpers.cs" />
+    <Compile Include="ProxyAceTool.cs" />
     <Compile Include="RWBuild.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="FolderDetailsItem.cs">

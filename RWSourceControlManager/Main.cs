@@ -114,5 +114,16 @@ namespace RWSourceControlManager
         {
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProjectManifest SelectedProject = (ProjectManifest)searchableListView1.GetSelected();
+
+            foreach (ProjectFolderMapping Mapping in SelectedProject.MappedFolders)
+            {
+                if (Mapping.FolderType == EFolderType.Source)
+                    ProxyAceTool.BuildACEFilesFromProxy(SelectedProject.ProjectID, Mapping);
+            }
+        }
     }
 }
